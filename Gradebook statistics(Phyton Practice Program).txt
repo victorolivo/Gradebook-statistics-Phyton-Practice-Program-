@@ -1,0 +1,47 @@
+A program that uses the keys(), values(), and/or items() dict methods to find statistics about the student_grades dictionary. Find the following:
+
+Tasks:
+Print the name and grade percentage of the student with the highest total of points
+Find the average score of each assignment.
+Find and apply a curve to each student's total score, such that the best student has 100% of the total points.
+
+
+
+# student_grades contains scores (out of 100) for 5 assignments
+student_grades = {
+    'Andrew': [56, 79, 90, 22, 50],
+    'Colin': [88, 62, 68, 75, 78],
+    'Alan': [95, 88, 92, 85, 85],
+    'Mary': [76, 88, 85, 82, 90],
+    'Tricia': [99, 92, 95, 89, 99]
+}
+#Print the name and grade percentage of the student with the highest total of points
+name_student = ''
+highest_grade = 0
+for name, grade in student_grades.items():
+    if (sum(grade) > highest_grade):
+        highest_grade = sum(grade)
+        name_student = name
+    
+print('Student with the highest score: ', name_student,highest_grade)
+print()
+
+#Find the average score of each assignment.
+avg_per_assign = []
+values = list(student_grades.values())
+dsum = 0
+for pos1 in range(len(values)):
+    for pos2 in range(len(values)):
+        dsum += values[pos2][pos1]
+    avg_per_assign.append(dsum/5)
+    
+for i in range(len(avg_per_assign)):
+    print('The average of assignment ',i+1 ,'is: ',avg_per_assign[i])
+    
+#Find and apply a curve to each student's total score, such that the best student has 100% of the total points.
+curve = (500 - highest_grade)
+new_highest_grade = highest_grade + curve
+print()
+print('New total scores after curve: ')
+for name, grade in student_grades.items():
+    print(name,': ',(sum(grade)+curve))
